@@ -19,8 +19,8 @@ X = train_df.drop(['date', 'user', 'msg', 'target'], axis = 1)
 y = train_df['target']
 X = X.fillna('other')
 
-X_test = train_df.drop(['date', 'user', 'msg', 'target'], axis = 1)
-y_test = train_df['target']
+X_test = test_df.drop(['date', 'user', 'msg', 'target'], axis = 1)
+y_test = test_df['target']
 X_test = X_test.fillna('other') 
 
 cat_features = ['city', 'moscow_district', 'region', 'area']
@@ -49,7 +49,6 @@ print("F1_Score на константной модели", f1_score(y_test, pd.S
 print("precision_score", precision_score(y_test, model_ct.predict(X_test)))
 print("recall_score", recall_score(y_test, model_ct.predict(X_test)))
 print("ROC_AUC_SCORE", roc_auc_score(y_test, model_ct.predict_proba(X_test)[:, 1]))
-print("ROC_AUC_SCORE на константной модели", roc_auc_score(y_test, pd.Series([1]*len(y_test))))
 model_ct.save_model('model/cat_model')
 print('Обучение закончено, модель сохранена.')
 
