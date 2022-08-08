@@ -2,7 +2,7 @@
 """
 Created on Sun Aug  7 15:39:51 2022
 
-@author: 72090
+@author: https://github.com/vik1109/
 """
 #imports
 from catboost import CatBoostClassifier, Pool
@@ -15,11 +15,11 @@ import numpy as np
 train_df = pd.read_csv('DB/train.csv', index_col = 0, sep = ';', encoding='utf-8-sig', on_bad_lines='skip')
 test_df = pd.read_csv('DB/test.csv', index_col = 0, sep = ';', encoding='utf-8-sig', on_bad_lines='skip')
 
-X = train_df.drop(['date', 'user', 'msg', 'target'], axis = 1)
+X = train_df.drop(['date', 'user', 'msg', 'target', 'site_', 'allergens_', 'medicins_', 'symptom_'], axis = 1)
 y = train_df['target']
 X = X.fillna('other')
 
-X_test = test_df.drop(['date', 'user', 'msg', 'target'], axis = 1)
+X_test = test_df.drop(['date', 'user', 'msg', 'target', 'site_', 'allergens_', 'medicins_', 'symptom_'], axis = 1)
 y_test = test_df['target']
 X_test = X_test.fillna('other') 
 

@@ -32,11 +32,17 @@ Python (Pandas, NumPy, CatBoost, Yargy, Sklearn)
 - ROC_AUC_SCORE 0.8871354166666667
 
 ###### обучение с текстом сообщения в признаках
-- F1_Score 0.8444444444444444
+- F1_Score 0.8363636363636363
 - F1_Score на константной модели 0.7499999999999999
-- precision_score 0.9047619047619048
-- recall_score 0.7916666666666666
-- ROC_AUC_SCORE 0.9113541666666667
+- precision_score 0.92
+- recall_score 0.7666666666666667
+- ROC_AUC_SCORE 0.9126041666666665
+
+
+###### Наилучшее качество модели при threshold = 0.3411492842925379
+ - Best F1_Score 0.8860759493670887
+ - Best precision_score 0.8974358974358975
+ - Best recall_score 0.875
 
 #### Состав проекта:
 

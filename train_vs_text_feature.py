@@ -2,7 +2,7 @@
 """
 Created on Sun Aug  7 15:39:51 2022
 
-@author: 72090
+@author: https://github.com/vik1109/
 """
 #imports
 from catboost import CatBoostClassifier, Pool
@@ -15,17 +15,18 @@ import numpy as np
 train_df = pd.read_csv('DB/train.csv', index_col = 0, sep = ';', encoding='utf-8-sig', on_bad_lines='skip')
 test_df = pd.read_csv('DB/test.csv', index_col = 0, sep = ';', encoding='utf-8-sig', on_bad_lines='skip')
 
-X = train_df.drop(['date', 'user','target'], axis = 1)
+X = train_df.drop(['date', 'user','target', 'site_', 'allergens_', 'medicins_', 'symptom_'], axis = 1)
 y = train_df['target']
 X = X.fillna('other')
 
-X_test = test_df.drop(['date', 'user', 'target'], axis = 1)
+X_test = test_df.drop(['date', 'user', 'target', 'site_', 'allergens_', 'medicins_', 'symptom_'], axis = 1)
 y_test = test_df['target']
 X_test = X_test.fillna('other') 
 
 cat_features = ['city', 'moscow_district', 'region', 'area']
 numeric_features = ['site', 'allergens', 'medicins', 'symptom', 'negative', 'positive']
 text_features = ['msg']
+
 scaler = StandardScaler()
 scaler.fit(X[numeric_features])
 X[numeric_features] = scaler.transform(X[numeric_features])
@@ -37,7 +38,7 @@ test_data = Pool(X_test, label = y_test, cat_features=cat_features, text_feature
 classes = np.unique(y)
 weights = compute_class_weight(class_weight='balanced', classes=classes, y=y)
 
-model_ct =  CatBoostClassifier(verbose = 3,
+model_ct =  CatBoostClassifier(verbose = 10,
                                eval_metric='AUC',
                                max_depth=8,
                                learning_rate = 0.1,
