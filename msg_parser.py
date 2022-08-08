@@ -32,7 +32,7 @@ negative_list = set(file_to_list('text/negative.txt', separator = '\n'))
 positive_list = set(file_to_list('text/positive.txt', separator = '\n'))
 
 #местоположение файла 'msg.csv'
-msg_file = "DB/train.csv"
+msg_file = "DB/rest.csv"
 
 
 
@@ -203,16 +203,20 @@ smpl = pd.read_csv(msg_file, index_col = 0, sep = ';', encoding='utf-8-sig', on_
 
 
 parser = Parser(SITE_OF_ALLERGY_RULE)
-print('City done!')
 smpl['site'] = smpl['msg'].apply(lambda x: len([match.fact.site  for match in parser.findall(x)]))
-parser = Parser(ALLERGEN_RULE)
+smpl['site_'] = smpl['msg'].apply(lambda x: ', '.join([match.fact.site  for match in parser.findall(x)]))
 print('Site done!')
+parser = Parser(ALLERGEN_RULE)
 smpl['allergens'] = smpl['msg'].apply(lambda x: len([match.fact.name for match in parser.findall(x)]))
+smpl['allergens_'] = smpl['msg'].apply(lambda x: ', '.join([match.fact.name for match in parser.findall(x)]))
+print('Allergens done!')
 parser = Parser(MEDICINE_RULE)
 smpl['medicins'] = smpl['msg'].apply(lambda x: len([match.fact.name for match in parser.findall(x)]))
+smpl['medicins_'] = smpl['msg'].apply(lambda x: ', '.join([match.fact.name for match in parser.findall(x)]))
 print('Medicins done!')
 parser = Parser(SYMPTOM_RULE)
 smpl['symptom'] = smpl['msg'].apply(lambda x: len([match.fact.name for match in parser.findall(x)]))
+smpl['symptom_'] = smpl['msg'].apply(lambda x: ', '.join([match.fact.name for match in parser.findall(x)]))
 print('Symptom done!')
 parser = Parser(NEGATIVE_RULE)
 smpl['negative'] = smpl['msg'].apply(lambda x: len([match.fact.neg for match in parser.findall(x)]))
