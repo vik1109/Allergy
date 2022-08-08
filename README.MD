@@ -42,4 +42,4 @@ Python (Pandas, NumPy, CatBoost, Yargy, Sklearn)
 - train_vs_text_feature.py - обучение и выгрузка на признаках с текстом сообщений
 - predict.py - запуск модели в работу на признаках без текста сообщений
 - predict_vs_text.py - запуск модели в работу на признаках с текстом сообщений
-
+- results.ipynb - jupiter notebook демонстрирующий возможности работы
